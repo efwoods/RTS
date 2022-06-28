@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 
 # Copy dependency definitions
 COPY package.json /usr/src/app
-COPY package-lock.json /usr/src/app
+RUN ["npm", "install"]
+# COPY package-lock.json /usr/src/app
 
 # Install dependecies
 #RUN npm set progress=false \
