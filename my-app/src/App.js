@@ -14,14 +14,8 @@ export function History(){
   </div>
 } 
 
-
-
 export function App() {
-  return (
-    <div>
-      <Search />
-    </div>
-  );
+  return <Search />;
 }
 
 
