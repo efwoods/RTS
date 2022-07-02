@@ -18,8 +18,10 @@ export function History(){
 
 export function App() {
   return (
-    <Search />
-  )
+    <div>
+      <Search />
+    </div>
+  );
 }
 
 
