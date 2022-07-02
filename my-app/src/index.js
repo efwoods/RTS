@@ -9,6 +9,8 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/history" element={<History />} /> 
     </Routes>
   </BrowserRouter>
 );
