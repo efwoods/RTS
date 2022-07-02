@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
-function App() {
+export function Search(){
+  <div>
+    <h1>Search</h1>
+  </div>
+} 
+
+export function History(){
+  <div>
+    <h1>History</h1>
+  </div>
+} 
+
+
+
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Search />
+  )
 }
 
-export default App;
+
