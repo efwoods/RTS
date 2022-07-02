@@ -17,13 +17,10 @@ Resources:
     - https://angular.io/docs
     - https://vuejs.org/v2/guide/
 
-# Chosen docker sample:
-https://github.com/docker/awesome-compose/tree/master/react-express-mongodb
-
 # Tasks
-- [ ] create "/search" page/route
+- [x] create "/search" page/route
   - [ ] create a search bar
   - [ ] send the search query to the api
   - [ ] display a list of the results from the API
-- [ ] create "/history" page/route
+- [x] create "/history" page/route
   - [ ] display a list of past searches from this session (does not persist through refresh)
