@@ -61,6 +61,7 @@ export function App() {
         .then((response) => response.json())
         .then(setData);
     }, []);
+  
     if (data)
       return <GithubUser 
         name={data.name}
@@ -68,6 +69,56 @@ export function App() {
       
       return <h1>Data</h1>
 }
+
+
+const display_data = [
+  { name: "Name", elevation: 1087 }
+
+]
+
+function List({data, renderItem, renderEmpty}) {
+  return !data.length ? (
+    renderEmpty 
+    ) : ( 
+      <ul>
+        {data.map((item) => (
+          <li key={item.name}>
+            {renderItem(item)}
+          </li>
+        ))}
+      </ul>
+    ); 
+}
+
+
+export function DisplayListComponent() {
+  return (
+    <List
+      data={display_data}
+      renderEmpty={<p>This list is empty</p>}
+      renderItem={(item) => (
+        <>
+          {item.name} - {item.elevation} ft.
+        </>
+      )}
+    />
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
