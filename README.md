@@ -19,7 +19,7 @@ Resources:
 
 # Tasks
 - [x] create "/search" page/route
-  - [ ] create a search bar
+  - [x] create a search bar
   - [ ] send the search query to the api
   - [ ] display a list of the results from the API
 - [x] create "/history" page/route
