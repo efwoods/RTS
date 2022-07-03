@@ -1,34 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useReducer, useRef } from 'react';
 
 export function Search(){
-    return(
-    <div>
-      <h1>Search</h1>
-    </div>
-    );
+    return <SearchBar />;
   } 
+
+
 
 function SearchBar() {
   const txtTitle = useRef();
-  const hexColor = useRef();
 
   console.log(txtTitle);
-
   const submit = (e) => {
     e.preventDefault();
     const title = txtTitle.current.value;
-    const color = hexColor.current.value;
-    alert(`${title}, ${color}`);
+    alert(`${title}`);
     txtTitle.current.value = "";
-    hexColor.current.value = "";
   };
   return (
     <form onSubmit={submit}>
       <input 
       ref={txtTitle}
-      type="text" placeholder='color title...' />
-      <input ref={hexColor} type="color" />
-      <button>ADD</button>
+      type="text" placeholder='search here...' />
+      <button>Search</button>
     </form>
   );
 }
