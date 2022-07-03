@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {App, History, DisplayListComponent} from './App';
+import {App, DisplayListComponent} from './App';
+import {History} from './pages/History'
 import {Search} from './pages/Search'
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
