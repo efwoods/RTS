@@ -31,39 +31,7 @@ function GithubUser({name, location}) {
 // }
 
 
-// const display_data = [
-//   { name: "Name", elevation: 1087 }
 
-// ]
-
-// function List({data, renderItem, renderEmpty}) {
-//   return !data.length ? (
-//     renderEmpty 
-//     ) : ( 
-//       <ul>
-//         {data.map((item) => (
-//           <li key={item.name}>
-//             {renderItem(item)}
-//           </li>
-//         ))}
-//       </ul>
-//     ); 
-// }
-
-
-// export function DisplayListComponent() {
-//   return (
-//     <List
-//       data={display_data}
-//       renderEmpty={<p>This list is empty</p>}
-//       renderItem={(item) => (
-//         <>
-//           {item.name} - {item.elevation} ft.
-//         </>
-//       )}
-//     />
-//   )
-// }
 
 // Search
 // export function Search() {
@@ -119,6 +87,41 @@ export function Search() {
       </form>
       );
   }
+
+// const display_data = [
+//   { name: "Name", elevation: 1087 }
+
+// ]
+
+// function List({data, renderItem, renderEmpty}) {
+//   return !data.length ? (
+//     renderEmpty 
+//     ) : ( 
+//       <ul>
+//         {data.map((item) => (
+//           <li key={item.name}>
+//             {renderItem(item)}
+//           </li>
+//         ))}
+//       </ul>
+//     ); 
+// }
+
+
+// export function DisplayListComponent() {
+//   return (
+//     <List
+//       data={display_data}
+//       renderEmpty={<p>This list is empty</p>}
+//       renderItem={(item) => (
+//         <>
+//           {item.name} - {item.elevation} ft.
+//         </>
+//       )}
+//     />
+//   )
+// }
+
 
 // export function SearchResult() {
 //   const txtTitle = useRef();
