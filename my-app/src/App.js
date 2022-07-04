@@ -2,14 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
 
-// function GithubUser({name, location}) {
-//   return(
-//     <div>
-//       <h1>{name}</h1>
-//       <p>{location}</p> 
-//     </div>
-//   );
-// }
+function GithubUser({name, location}) {
+  return(
+    <div>
+      <h1>{name}</h1>
+      <p>{location}</p> 
+    </div>
+  );
+}
 
 // export function App() {
 //     const [data, setData] = useState(null);
@@ -66,47 +66,78 @@ import { useState, useEffect, useRef } from 'react';
 // }
 
 // Search
+// export function Search() {
+//   return (
+//     <div>
+//       <SearchBar />
+//       <SearchResult />
+//     </div>
+//   );
+// }
 
 export function Search() {
-  return <SearchBar />;
-}
-
-function SearchBar() {
   const txtTitle = useRef();
   const [data, setData] = useState(null);
-  const url = 'http://hn.algolia.com/api/v1/search?query=';
+  const url = 'http://hn.algolia.com/api/v1/search?query='
 
-  useEffect(() => {
+
+  console.log(txtTitle);
+  const submit = (e) => {
+    e.preventDefault();
     fetch(
       `https://api.github.com/users/moonhighway`
     )
       .then((response) => response.json())
       .then(setData);
-  }, [txtTitle]);
-
-  console.log(txtTitle);
-  const submit = (e) => {
-    e.preventDefault();
     const title = txtTitle.current.value;
     alert(`${title}`);
     txtTitle.current.value = "";
 
   };
-  if (data == "") {
-    return <div
-      name={data.name}
-      location={data.location} />;
-  } else {
+  if(data)
     return (
+      <div>
       <form onSubmit={submit}>
         <input
           ref={txtTitle}
           type="text" placeholder='search here...' />
         <button>Search</button>
       </form>
+      
+      <GithubUser 
+        name={data.name}
+        location={data.location}/>
+      </div>
     );
+  else
+      return (
+        <form onSubmit={submit}>
+        <input
+          ref={txtTitle}
+          type="text" placeholder='search here...' />
+        <button>Search</button>
+      </form>
+      );
   }
-}
+
+// export function SearchResult() {
+//   const txtTitle = useRef();
+//   const [data, setData] = useState(null);
+//   const url = 'http://hn.algolia.com/api/v1/search?query=';
+
+
+
+//   console.log(txtTitle);
+//   if (data) {
+//     return <GithubUser
+//       name={data.name}
+//       location={data.location} />;
+//   } else {
+//     return <GithubUser
+//     name={"no data"}
+//     location={"data.location"} />;
+//   }
+// }
 
 
 
@@ -120,7 +151,6 @@ function SearchBar() {
 //   </div>
 //   );
 // } 
-
 
 
 
