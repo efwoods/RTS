@@ -2,11 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
 
-function GithubUser({name, location}) {
-  return(
+function GithubUser({ name, location }) {
+  return (
     <div>
       <h1>{name}</h1>
-      <p>{location}</p> 
+      <p>{location}</p>
     </div>
   );
 }
@@ -43,50 +43,81 @@ function GithubUser({name, location}) {
 //   );
 // }
 
+
+function List({ data_l, renderItem, renderEmpty }) {
+  return !data_l.length ? (
+    renderEmpty
+  ) : (
+    <ul>
+      {data_l.map((item) => (
+        <li key={item.username}>
+          {renderItem(item)}
+        </li>
+      ))}
+    </ul>
+  );
+
+}
+
 export function Search() {
-  const txtTitle = useRef();
+  const [query, setQuery] = useState("foo");
   const [data, setData] = useState(null);
-  const url = 'http://hn.algolia.com/api/v1/search?query='
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(false);
+  const url = 'http://hn.algolia.com/api/v1/search?query=foo'
 
+  // const opts = {
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(query)
+  // }
 
-  console.log(txtTitle);
   const submit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetch(
-      `https://api.github.com/users/moonhighway`
+      url
     )
       .then((response) => response.json())
-      .then(setData);
-    const title = txtTitle.current.value;
-    alert(`${title}`);
-    txtTitle.current.value = "";
-
+      .then(setData)
+      .then(() => setLoading(false))
+      .catch(setError);
+    setQuery("")
   };
-  if(data)
-    return (
-      <div>
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) return <pre>JSON.stringify(error)</pre>;
+  // if (!data) return null;
+  return (
+    <div>
       <form onSubmit={submit}>
         <input
-          ref={txtTitle}
-          type="text" placeholder='search here...' />
+          value={query}
+          onChange={(event) =>
+            setQuery(event.target.value)
+          }
+          type="text"
+          placeholder='Enter Search Query'
+        />
         <button>Search</button>
       </form>
-      
-      <GithubUser 
-        name={data.name}
-        location={data.location}/>
-      </div>
-    );
-  else
-      return (
-        <form onSubmit={submit}>
-        <input
-          ref={txtTitle}
-          type="text" placeholder='search here...' />
-        <button>Search</button>
-      </form>
-      );
-  }
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+
+    </div>
+
+  )
+
+};
+
+
+{/* <List
+data_l={data}
+renderEmpty={<p>This list is empty...</p>}
+renderItem={(item) => (
+  <>
+    {item.username} - {item.karma}</>
+)
+} /> */}
 
 // const display_data = [
 //   { name: "Name", elevation: 1087 }
