@@ -64,7 +64,8 @@ export function Search() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(false);
-  const url = 'http://hn.algolia.com/api/v1/search?query=foo'
+  const [history, setHistory] = useState("");
+  const url = 'http://hn.algolia.com/api/v1/search?query='
 
   // const opts = {
   //   method: "GET",
@@ -75,8 +76,9 @@ export function Search() {
   const submit = (e) => {
     e.preventDefault();
     setLoading(true);
+    let req = url.concat(query);
     fetch(
-      url
+      req
     )
       .then((response) => response.json())
       .then(setData)
