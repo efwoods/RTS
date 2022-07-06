@@ -11,6 +11,29 @@ function GithubUser({ name, location }) {
   );
 }
 
+var history = [];
+
+var searchHistoryObjects = history.map(
+  (historicalItem, i) => ({
+    id: i,
+    title: historicalItem
+  })
+);
+
+export function History({history}){
+  return(
+  <section>
+    <ul>
+      {history.map((historicalItem) => (
+        <li key={historicalItem.id}>
+          {historicalItem.title}
+        </li>
+      ))}
+    </ul>
+  </section>
+  );
+} 
+
 // export function App() {
 //     const [data, setData] = useState(null);
 //     const url = 'http://hn.algolia.com/api/v1/search?query=';
@@ -30,9 +53,6 @@ function GithubUser({ name, location }) {
 //       return <h1>Data</h1>
 // }
 
-
-
-
 // Search
 // export function Search() {
 //   return (
@@ -42,7 +62,6 @@ function GithubUser({ name, location }) {
 //     </div>
 //   );
 // }
-
 
 function List({ data_l, renderItem, renderEmpty }) {
   return !data_l.length ? (
@@ -64,19 +83,21 @@ export function Search() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(false);
-  const [history, setHistory] = useState("");
   const url = 'http://hn.algolia.com/api/v1/search?query='
-
-  // const opts = {
-  //   method: "GET",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(query)
-  // }
 
   const submit = (e) => {
     e.preventDefault();
     setLoading(true);
+    
     let req = url.concat(query);
+    history.push(query);
+    searchHistoryObjects = history.map(
+      (historicalItem, i) => ({
+        id: i,
+        title: historicalItem
+      })
+    );
+    console.log(searchHistoryObjects.length);
     fetch(
       req
     )
@@ -103,14 +124,22 @@ export function Search() {
         />
         <button>Search</button>
       </form>
+      <p>History Searches Below</p>
+      <History history={searchHistoryObjects}></History>
       <pre>{JSON.stringify(data, null, 2)}</pre>
-
     </div>
-
   )
-
 };
 
+export function HistoryPage ({searchHistoryObjects}){
+  console.log(searchHistoryObjects.length);
+  return(
+  <div>
+    <p>My History</p>
+    <History history={searchHistoryObjects}></History>
+  </div>
+  )
+};
 
 {/* <List
 data_l={data}
@@ -175,15 +204,4 @@ renderItem={(item) => (
 //   }
 // }
 
-
-
-
 // History 
-
-// export function History(){
-//   return (
-//   <div>
-//     <h1>History</h1>
-//   </div>
-//   );
-// } 
