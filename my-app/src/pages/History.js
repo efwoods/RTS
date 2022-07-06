@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 var history = [];
 
 var searchHistoryObjects = history.map(
@@ -21,12 +23,35 @@ export function History({history}){
   );
 }
 
-export function HistoryPage ({searchHistoryObjects}){
-  console.log(searchHistoryObjects.length);
+export function HistoryPage (){
+  const [query, setQuery] = useState("");
+    const submit = (e) => {
+    e.preventDefault();
+    history.push(query);
+    searchHistoryObjects = history.map(
+      (historicalItem, i) => ({
+        id: i,
+        title: historicalItem
+      })
+    );
+    console.log(searchHistoryObjects.length);
+    setQuery("")
+  };
   return(
-  <div>
-    <p>My History</p>
-    <History history={searchHistoryObjects}></History>
+    <div>
+      <form onSubmit={submit}>
+        <input
+          value={query}
+          onChange={(event) =>
+            setQuery(event.target.value)
+          }
+          type="text"
+          placeholder='Enter Search Query'
+        />
+        <button>Search</button>
+      </form>
+      <p>History Searches Below</p>
+      <History history={searchHistoryObjects}></History>
   </div>
   )
 };
