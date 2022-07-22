@@ -5,17 +5,19 @@ FROM node:latest
 WORKDIR /usr/src/app
 
 # Copy dependency definitions
-COPY package.json /usr/src/app
-COPY package-lock.json /usr/src/app
+# COPY package.json /usr/src/app
+# COPY package-lock.json /usr/src/app
+
+# Get all the code needed to run the app
+COPY . /usr/src/app
 
 # Install dependencies
 #RUN npm set progress=false \
 #   && npm config set depth 0 \
 #   && npm i install
-RUN npm ci
+RUN npm install
 
-# Get all the code needed to run the app
-COPY . /usr/src/app
+
 
 #Expose the port the app runs in
 EXPOSE 3000
